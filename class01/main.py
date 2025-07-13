@@ -1,8 +1,9 @@
 # pip install openai-agents
 # pip install python-dotenv
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunConfig
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel, RunConfig, function_tool
 from dotenv import load_dotenv
 import os
+import asyncio
 
 load_dotenv()
 
@@ -29,17 +30,31 @@ config = RunConfig(
     tracing_disabled=True
 )
 
-# Write Agent
-writer = Agent(
-    name = 'Writer Agent',
-    instructions= 
-    """You are a writer agent. Generate poem,
-    stories, essay, email etc."""
-)
+@function_tool
+def get_weather(city: str):
+    return f'The current in {city} weather is 42 degrees'
 
-response = Runner.run_sync(
-    writer,
-    input = 'Write a 2 paragraph essay on Generative AI..',
-    run_config = config
+# Write Agent
+# writer = Agent(
+#     name = 'Writer Agent',
+#     instructions= 
+#     """You are a writer agent. Generate poem,
+#     stories, essay, email etc."""
+# )
+
+async def main():
+    agent = Agent(
+        name = 'Weather Agent',
+        instructions = 'Your task is to answer user query. If you do not have the answer to the user query just deny the query do not hallucinate',
+        tools = [get_weather]
     )
-print(response.final_output)
+
+    response = await  Runner.run(
+        agent,
+        input = 'Do you have access to json placeholder api available on the internet?',
+        run_config = config
+        )
+    print(response)
+
+if __name__ == '__main__':
+    asyncio.run(main())
