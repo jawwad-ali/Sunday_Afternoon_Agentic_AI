@@ -1,5 +1,5 @@
 from agents import Agent, Runner
-from connection import config
+from class06.connection import config
 from openai.types.responses import ResponseTextDeltaEvent
 import asyncio
 
