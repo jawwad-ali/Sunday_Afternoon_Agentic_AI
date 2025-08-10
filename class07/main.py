@@ -7,7 +7,6 @@ from agents import (Agent, OutputGuardrailTripwireTriggered, Runner,
     input_guardrail,
     GuardrailFunctionOutput,
     InputGuardrailTripwireTriggered, output_guardrail
-
 )
 
 class PassengerOutput(BaseModel):
