@@ -15,3 +15,7 @@
 ## OpenAI Agents SDK (Crash Course)
 <a href='https://www.youtube.com/watch?v=bDPiXVRjqF8&list=PL0vKVrkG4hWr4V2I4P6GaDzMG_LijlGTm&ab_channel=PanaversityUrdu'>
 Crash Course by Panaversity</a>
+
+
+## Quiz
+<a href="https://forms.gle/wSRJ5Vq5XaQHmXGS9">Practice Quiz</a> 
